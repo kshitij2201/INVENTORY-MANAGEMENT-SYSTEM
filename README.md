@@ -311,19 +311,23 @@ After running the seed script, you can login with:
 
 ## 🔑 Role-Based Permissions
 
+The system implements predefined role-based access control with the following permissions:
+
 | Feature | Admin | Staff | Inventory Manager | Sales Manager |
 |---------|-------|-------|-------------------|---------------|
-| **Dashboard** | ✅ View | ✅ View | ✅ View | ✅ View |
-| **Items** | ✅ Full | ✅ View | ✅ View | ✅ View |
-| **Vendors** | ✅ Full | ✅ View | ✅ View | ❌ No Access |
-| **Purchase Orders** | ✅ Full | ✅ Full | ✅ Full | ❌ No Access |
-| **Purchase Bills** | ✅ Full | ✅ Full | ✅ Full | ❌ No Access |
-| **Sales Orders** | ✅ Full | ✅ Full | ✅ View | ✅ Full |
-| **Sales Invoices** | ✅ Full | ✅ Full | ✅ View | ✅ Full |
-| **Sales Returns** | ✅ Full | ✅ Full | ✅ View | ✅ Full |
-| **Stock Movements** | ✅ View | ✅ View | ✅ View | ✅ View |
-| **Alerts** | ✅ Full | ✅ View | ✅ Full | ❌ No Access |
-| **Users** | ✅ Full | ❌ No Access | ❌ No Access | ❌ No Access |
+| **Dashboard** | 👁️ View | 👁️ View | 👁️ View | 👁️ View |
+| **Products/Items** | ✅ Full | 👁️ View | 👁️ View | 👁️ View |
+| **Vendors** | ✅ Full | 👁️ View | 👁️ View | ❌ No Access |
+| **Purchase Orders** | ✅ Full | ✅ Full | 👁️ View | ❌ No Access |
+| **Purchase Bills** | ✅ Full | ❌ No Access | ✅ Full | ❌ No Access |
+| **Sales Orders** | ✅ Full | ✅ Full | 👁️ View | ✅ Full |
+| **Sales Invoices** | ✅ Full | ❌ No Access | ❌ No Access | ✅ Full |
+| **Sales Returns** | ✅ Full | ✅ Full | 👁️ View | ✅ Full |
+| **Stock Movements** | 👁️ View | 👁️ View | 👁️ View | 👁️ View |
+| **Alerts** | ✅ Full | 👁️ View | ✅ Full | ❌ No Access |
+| **User Management** | ✅ Full | ❌ No Access | ❌ No Access | ❌ No Access |
+
+**Legend:** ✅ Full Access (Create, Read, Update, Delete) | 👁️ View Only (Read) | ❌ No Access
 
 **Custom Permissions:** Admin can assign custom read/write permissions to individual users, overriding default role permissions.
 
