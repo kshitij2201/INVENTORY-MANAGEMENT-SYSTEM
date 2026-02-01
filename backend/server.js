@@ -22,7 +22,15 @@ const dashboardRoutes = require('./routes/dashboardRoutes');
 const app = express();
 
 // Middleware
-app.use(cors());
+const corsOptions = {
+  origin: [
+    'https://inventory-management-system-ie71.vercel.app', // Production frontend
+    'http://localhost:3000', // Local development
+  ],
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
