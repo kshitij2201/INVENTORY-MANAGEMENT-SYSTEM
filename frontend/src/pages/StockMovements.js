@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import { stockMovementsAPI, itemsAPI } from '../services/api';
-import { useAuth } from '../context/AuthContext';
 
 const StockMovements = () => {
   const [movements, setMovements] = useState([]);
