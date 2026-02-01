@@ -87,9 +87,11 @@ exports.login = async (req, res) => {
 
     sendTokenResponse(user, 200, res);
   } catch (error) {
+    console.error('Login error:', error);
     res.status(500).json({
       success: false,
       message: error.message || 'Error logging in',
+      error: process.env.NODE_ENV === 'development' ? error.stack : undefined,
     });
   }
 };

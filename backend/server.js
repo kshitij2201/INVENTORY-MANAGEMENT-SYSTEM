@@ -59,7 +59,16 @@ app.use('/api/dashboard', dashboardRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', message: 'Server is running' });
+  res.json({ 
+    status: 'ok', 
+    message: 'Server is running',
+    env: {
+      hasMongoUri: !!process.env.MONGODB_URI,
+      hasJwtSecret: !!process.env.JWT_SECRET,
+      nodeEnv: process.env.NODE_ENV,
+      mongoConnected: mongoose.connection.readyState === 1
+    }
+  });
 });
 
 // Error handling middleware
