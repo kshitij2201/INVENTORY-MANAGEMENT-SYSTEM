@@ -53,7 +53,7 @@ const Login = () => {
             </div>
             <div>
               <h3>Stock Control</h3>
-              <p>Real-time inventory tracking</p>
+              <p>Monitor inventory levels in real-time with automated alerts for low stock, track product movements, and maintain optimal stock levels across multiple locations.</p>
             </div>
           </div>
           <div className="feature-item">
@@ -66,7 +66,7 @@ const Login = () => {
             </div>
             <div>
               <h3>Analytics</h3>
-              <p>Insights & detailed reports</p>
+              <p>Gain powerful insights with comprehensive sales reports, inventory trends, and profitability analysis to make data-driven business decisions.</p>
             </div>
           </div>
           <div className="feature-item">
@@ -77,7 +77,7 @@ const Login = () => {
             </div>
             <div>
               <h3>Secure Access</h3>
-              <p>Role-based permissions</p>
+              <p>Protect your business data with role-based access control, ensuring each team member has appropriate permissions for their responsibilities.</p>
             </div>
           </div>
         </div>
