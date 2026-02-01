@@ -27,6 +27,12 @@ export const NotificationProvider = ({ children }) => {
 
   // Check for new alerts every 30 seconds
   useEffect(() => {
+    // Only check for alerts if user is logged in (token exists)
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return; // Don't set up polling if not authenticated
+    }
+
     const checkForNewAlerts = async () => {
       try {
         const response = await alertsAPI.getAll({ isResolved: false });
@@ -44,7 +50,10 @@ export const NotificationProvider = ({ children }) => {
 
         setLastChecked(Date.now());
       } catch (error) {
-        console.error('Error checking for new alerts:', error);
+        // Only log error if it's not a 401 (unauthorized)
+        if (error.response?.status !== 401) {
+          console.error('Error checking for new alerts:', error);
+        }
       }
     };
 
