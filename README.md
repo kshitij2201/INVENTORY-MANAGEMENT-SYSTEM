@@ -258,7 +258,7 @@ node seeds/seedData.js
 npm run dev
 ```
 
-Backend will run on **http://localhost:5000**
+Backend will run on **https://inventory-management-system-self-beta.vercel.app**
 
 #### 3. Frontend Setup
 
@@ -271,7 +271,7 @@ cd frontend
 npm install
 
 # Create .env file
-echo REACT_APP_API_URL=http://localhost:5000/api > .env
+echo REACT_APP_API_URL=https://inventory-management-system-self-beta.vercel.app/api > .env
 
 # Start the frontend development server
 npm start
@@ -476,7 +476,7 @@ Configured via Helmet.js - automatically enabled.
 #### API URL
 Set in `frontend/.env`:
 ```env
-REACT_APP_API_URL=http://localhost:5000/api
+REACT_APP_API_URL=https://inventory-management-system-self-beta.vercel.app/api
 ```
 
 For production deployment, update to your backend URL.
