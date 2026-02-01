@@ -12,8 +12,6 @@ const StockMovements = () => {
     refType: '',
     movementType: '',
   });
-  
-  const { hasRole } = useAuth();
 
   useEffect(() => {
     fetchMovements();
