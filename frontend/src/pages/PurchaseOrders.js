@@ -149,8 +149,7 @@ const PurchaseOrders = () => {
   const handleQuickAddItem = async (e) => {
     e.preventDefault();
     try {
-      const response = await itemsAPI.create(quickItemData);
-      const newItem = response.data.data;
+      await itemsAPI.create(quickItemData);
       
       // Refresh items list
       await fetchItems();
