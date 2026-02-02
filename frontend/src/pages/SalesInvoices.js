@@ -414,7 +414,7 @@ const SalesInvoices = () => {
               </div>
 
               <div style={{ marginTop: '20px', fontSize: '18px', fontWeight: 'bold' }}>
-                Total Amount: ${calculateTotal().toFixed(2)}
+                Total Amount: ₹{calculateTotal().toFixed(2)}
               </div>
 
               <div className="flex gap-10 mt-20">
@@ -458,11 +458,11 @@ const SalesInvoices = () => {
                   <td>{invoice.customerName}</td>
                   <td>{invoice.customerPhone}</td>
                   <td>
-                    ${(invoice.grandTotal || 0).toFixed(2)}
+                    ₹{(invoice.grandTotal || 0).toFixed(2)}
                     {invoice.totalReturned > 0 && (
                       <div style={{ fontSize: '11px', color: '#d9534f', marginTop: '2px' }}>
-                        ↩️ Returns: ${invoice.totalReturned.toFixed(2)}<br/>
-                        <strong>Net: ${((invoice.grandTotal || 0) - invoice.totalReturned).toFixed(2)}</strong>
+                        ↩️ Returns: ₹{invoice.totalReturned.toFixed(2)}<br/>
+                        <strong>Net: ₹{((invoice.grandTotal || 0) - invoice.totalReturned).toFixed(2)}</strong>
                       </div>
                     )}
                   </td>
@@ -474,7 +474,7 @@ const SalesInvoices = () => {
                         </span>
                         {(invoice.paymentStatus === 'Partially Paid' || invoice.paymentStatus === 'Overpaid') && (
                           <div style={{ fontSize: '11px', marginTop: '4px' }}>
-                            ${(invoice.paidAmount || 0).toFixed(2)} / ${((invoice.grandTotal || 0) - (invoice.totalReturned || 0)).toFixed(2)}
+                            ₹{(invoice.paidAmount || 0).toFixed(2)} / ₹{((invoice.grandTotal || 0) - (invoice.totalReturned || 0)).toFixed(2)}
                           </div>
                         )}
                       </>
@@ -545,17 +545,17 @@ const SalesInvoices = () => {
               <div style={{ marginBottom: '20px', padding: '10px', backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
                 <div><strong>Invoice:</strong> {selectedInvoice.invoiceNumber}</div>
                 <div><strong>Customer:</strong> {selectedInvoice.customerName}</div>
-                <div><strong>Original Total:</strong> ${(selectedInvoice.grandTotal || 0).toFixed(2)}</div>
+                <div><strong>Original Total:</strong> ₹{(selectedInvoice.grandTotal || 0).toFixed(2)}</div>
                 {selectedInvoice.totalReturned > 0 && (
                   <>
-                    <div style={{ color: '#d9534f' }}><strong>Returns:</strong> -${selectedInvoice.totalReturned.toFixed(2)}</div>
+                    <div style={{ color: '#d9534f' }}><strong>Returns:</strong> -₹{selectedInvoice.totalReturned.toFixed(2)}</div>
                     <div style={{ borderTop: '1px solid #ddd', marginTop: '4px', paddingTop: '4px' }}>
-                      <strong>Adjusted Total:</strong> ${((selectedInvoice.grandTotal || 0) - selectedInvoice.totalReturned).toFixed(2)}
+                      <strong>Adjusted Total:</strong> ₹{((selectedInvoice.grandTotal || 0) - selectedInvoice.totalReturned).toFixed(2)}
                     </div>
                   </>
                 )}
-                <div><strong>Paid Amount:</strong> ${(selectedInvoice.paidAmount || 0).toFixed(2)}</div>
-                <div><strong>Remaining:</strong> ${(((selectedInvoice.grandTotal || 0) - (selectedInvoice.totalReturned || 0)) - (selectedInvoice.paidAmount || 0)).toFixed(2)}</div>
+                <div><strong>Paid Amount:</strong> ₹{(selectedInvoice.paidAmount || 0).toFixed(2)}</div>
+                <div><strong>Remaining:</strong> ₹{(((selectedInvoice.grandTotal || 0) - (selectedInvoice.totalReturned || 0)) - (selectedInvoice.paidAmount || 0)).toFixed(2)}</div>
               </div>
               
               <form onSubmit={handlePaymentSubmit}>
@@ -644,17 +644,17 @@ const SalesInvoices = () => {
               <div style={{ marginBottom: '20px', padding: '10px', backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
                 <div><strong>Invoice:</strong> {selectedInvoice.invoiceNumber}</div>
                 <div><strong>Customer:</strong> {selectedInvoice.customerName}</div>
-                <div><strong>Original Total:</strong> ${(paymentHistory.grandTotal || 0).toFixed(2)}</div>
+                <div><strong>Original Total:</strong> ₹{(paymentHistory.grandTotal || 0).toFixed(2)}</div>
                 {paymentHistory.totalReturned > 0 && (
                   <>
-                    <div style={{ color: '#d9534f' }}><strong>Returns:</strong> -${paymentHistory.totalReturned.toFixed(2)}</div>
+                    <div style={{ color: '#d9534f' }}><strong>Returns:</strong> -₹{paymentHistory.totalReturned.toFixed(2)}</div>
                     <div style={{ borderTop: '1px solid #ddd', marginTop: '4px', paddingTop: '4px' }}>
-                      <strong>Adjusted Total:</strong> ${(paymentHistory.adjustedTotal || 0).toFixed(2)}
+                      <strong>Adjusted Total:</strong> ₹{(paymentHistory.adjustedTotal || 0).toFixed(2)}
                     </div>
                   </>
                 )}
-                <div><strong>Paid Amount:</strong> ${(paymentHistory.paidAmount || 0).toFixed(2)}</div>
-                <div><strong>Remaining:</strong> ${(paymentHistory.remainingAmount || 0).toFixed(2)}</div>
+                <div><strong>Paid Amount:</strong> ₹{(paymentHistory.paidAmount || 0).toFixed(2)}</div>
+                <div><strong>Remaining:</strong> ₹{(paymentHistory.remainingAmount || 0).toFixed(2)}</div>
                 <div>
                   <strong>Status:</strong>{' '}
                   <span className={`badge ${getPaymentStatusBadge(paymentHistory.paymentStatus)}`}>
@@ -701,7 +701,7 @@ const SalesInvoices = () => {
                     {paymentHistory.payments.map((payment, index) => (
                       <tr key={index}>
                         <td>{new Date(payment.paymentDate).toLocaleDateString()}</td>
-                        <td>${(payment.amount || 0).toFixed(2)}</td>
+                        <td>₹{(payment.amount || 0).toFixed(2)}</td>
                         <td>{payment.paymentMethod}</td>
                         <td>{payment.reference || '-'}</td>
                         <td>{payment.recordedBy?.name || 'N/A'}</td>

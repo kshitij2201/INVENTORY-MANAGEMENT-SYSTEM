@@ -86,7 +86,7 @@ const Dashboard = () => {
           <div className="stat-card">
             <h3>Stock Value</h3>
             <div className="stat-value" style={{ color: '#10b981' }}>
-              ${stats?.inventory?.totalStockValue || 0}
+              ₹{stats?.inventory?.totalStockValue || 0}
             </div>
             <div style={{ fontSize: '12px', color: '#64748b', marginTop: '5px' }}>
               Total inventory worth
@@ -97,13 +97,13 @@ const Dashboard = () => {
             <h3>Monthly Purchases</h3>
             <div className="stat-value">{stats?.purchases?.count || 0}</div>
             <div style={{ fontSize: '14px', color: '#64748b', marginTop: '5px' }}>
-              Total: ${stats?.purchases?.totalAmount?.toFixed(2) || 0}
+              Total: ₹{stats?.purchases?.totalAmount?.toFixed(2) || 0}
             </div>
             <div style={{ fontSize: '12px', color: '#10b981', marginTop: '2px' }}>
-              Paid: ${stats?.purchases?.paidAmount?.toFixed(2) || 0}
+              Paid: ₹{stats?.purchases?.paidAmount?.toFixed(2) || 0}
             </div>
             <div style={{ fontSize: '12px', color: '#ef4444', marginTop: '2px' }}>
-              Pending: ${stats?.purchases?.pendingAmount?.toFixed(2) || 0}
+              Pending: ₹{stats?.purchases?.pendingAmount?.toFixed(2) || 0}
             </div>
           </div>
           
@@ -111,18 +111,18 @@ const Dashboard = () => {
             <h3>Monthly Sales</h3>
             <div className="stat-value">{stats?.sales?.count || 0}</div>
             <div style={{ fontSize: '14px', color: '#64748b', marginTop: '5px' }}>
-              Total: ${stats?.sales?.totalAmount?.toFixed(2) || 0}
+              Total: ₹{stats?.sales?.totalAmount?.toFixed(2) || 0}
             </div>
             {stats?.sales?.returnedAmount > 0 && (
               <div style={{ fontSize: '12px', color: '#f59e0b', marginTop: '2px' }}>
-                Returned: ${stats?.sales?.returnedAmount?.toFixed(2) || 0}
+                Returned: ₹{stats?.sales?.returnedAmount?.toFixed(2) || 0}
               </div>
             )}
             <div style={{ fontSize: '12px', color: '#10b981', marginTop: '2px' }}>
-              Received: ${stats?.sales?.paidAmount?.toFixed(2) || 0}
+              Received: ₹{stats?.sales?.paidAmount?.toFixed(2) || 0}
             </div>
             <div style={{ fontSize: '12px', color: '#ef4444', marginTop: '2px' }}>
-              Pending: ${stats?.sales?.pendingAmount?.toFixed(2) || 0}
+              Pending: ₹{stats?.sales?.pendingAmount?.toFixed(2) || 0}
             </div>
           </div>
         </div>

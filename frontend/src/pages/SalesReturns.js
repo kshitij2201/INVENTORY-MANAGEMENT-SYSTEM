@@ -300,7 +300,7 @@ const SalesReturns = () => {
               </div>
 
               <div style={{ marginTop: '20px', fontSize: '18px', fontWeight: 'bold' }}>
-                Total Refund Amount: ${calculateTotal().toFixed(2)}
+                Total Refund Amount: ₹{calculateTotal().toFixed(2)}
               </div>
 
               <div className="flex gap-10 mt-20">
@@ -343,7 +343,7 @@ const SalesReturns = () => {
                   <td>{returnItem.returnNumber}</td>
                   <td>{returnItem.salesInvoice?.invoiceNumber || '-'}</td>
                   <td>{returnItem.customerName || returnItem.salesInvoice?.customerName || '-'}</td>
-                  <td>${(returnItem.totalAmount || 0).toFixed(2)}</td>
+                  <td>₹{(returnItem.totalAmount || 0).toFixed(2)}</td>
                   <td style={{ maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                     {returnItem.reason}
                   </td>

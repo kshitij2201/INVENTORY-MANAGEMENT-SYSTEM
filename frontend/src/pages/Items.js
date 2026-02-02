@@ -327,8 +327,8 @@ const Items = () => {
                     <td>{item.sku}</td>
                     <td>{item.name}</td>
                     <td>{item.category}</td>
-                    <td>${item.purchasePrice}</td>
-                    <td>${item.sellingPrice}</td>
+                    <td>₹{item.purchasePrice}</td>
+                    <td>₹{item.sellingPrice}</td>
                     <td>{item.currentStock} {item.unit}</td>
                     <td>{item.minStockLevel} {item.unit}</td>
                     <td>

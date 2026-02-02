@@ -368,7 +368,7 @@ const SalesOrders = () => {
               </div>
 
               <div style={{ marginTop: '20px', fontSize: '18px', fontWeight: 'bold' }}>
-                Total Amount: ${calculateTotal().toFixed(2)}
+                Total Amount: ₹{calculateTotal().toFixed(2)}
               </div>
 
               <div className="flex gap-10 mt-20">
@@ -410,7 +410,7 @@ const SalesOrders = () => {
                   <td>{order.orderNumber}</td>
                   <td>{order.customerName}</td>
                   <td>{order.customerPhone}</td>
-                  <td>${(order.totalAmount || 0).toFixed(2)}</td>
+                  <td>₹{(order.totalAmount || 0).toFixed(2)}</td>
                   <td>
                     <span className={`badge ${getStatusBadge(order.status)}`}>
                       {order.status}

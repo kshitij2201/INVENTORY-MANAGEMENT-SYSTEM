@@ -10,6 +10,17 @@ const PurchaseOrders = () => {
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editingOrder, setEditingOrder] = useState(null);
+  const [showQuickAddItem, setShowQuickAddItem] = useState(false);
+  const [quickItemData, setQuickItemData] = useState({
+    name: '',
+    sku: '',
+    category: '',
+    purchasePrice: '',
+    sellingPrice: '',
+    unit: 'pcs',
+    minStockLevel: '10',
+    currentStock: '0'
+  });
   const [formData, setFormData] = useState({
     vendor: '',
     items: [{ item: '', quantity: '', rate: '', amount: 0 }],
@@ -135,6 +146,36 @@ const PurchaseOrders = () => {
     });
   };
 
+  const handleQuickAddItem = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await itemsAPI.create(quickItemData);
+      const newItem = response.data.data;
+      
+      // Refresh items list
+      await fetchItems();
+      
+      // Close modal
+      setShowQuickAddItem(false);
+      
+      // Reset quick add form
+      setQuickItemData({
+        name: '',
+        sku: '',
+        category: '',
+        purchasePrice: '',
+        sellingPrice: '',
+        unit: 'pcs',
+        minStockLevel: '10',
+        currentStock: '0'
+      });
+      
+      alert('Item added successfully! You can now select it.');
+    } catch (error) {
+      alert(error.response?.data?.message || 'Error adding item');
+    }
+  };
+
   const getStatusBadge = (status) => {
     const badges = {
       Draft: 'badge-secondary',
@@ -204,7 +245,17 @@ const PurchaseOrders = () => {
                 </select>
               </div>
 
-              <h3 style={{ marginTop: '20px' }}>Items</h3>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '20px' }}>
+                <h3>Items</h3>
+                <button
+                  type="button"
+                  className="btn btn-sm btn-secondary"
+                  onClick={() => setShowQuickAddItem(true)}
+                  style={{ fontSize: '12px' }}
+                >
+                  + Add New Item
+                </button>
+              </div>
               {formData.items.map((orderItem, index) => (
                 <div
                   key={index}
@@ -278,7 +329,7 @@ const PurchaseOrders = () => {
               </div>
 
               <div style={{ marginTop: '20px', fontSize: '18px', fontWeight: 'bold' }}>
-                Total Amount: ${calculateTotal().toFixed(2)}
+                Total Amount: ₹{calculateTotal().toFixed(2)}
               </div>
 
               <div className="flex gap-10 mt-20">
@@ -319,7 +370,7 @@ const PurchaseOrders = () => {
                 <tr key={order._id}>
                   <td>{order.orderNumber}</td>
                   <td>{order.vendor?.name}</td>
-                  <td>${(order.totalAmount || 0).toFixed(2)}</td>
+                  <td>₹{(order.totalAmount || 0).toFixed(2)}</td>
                   <td>
                     <span className={`badge ${getStatusBadge(order.status)}`}>
                       {order.status}
@@ -360,6 +411,121 @@ const PurchaseOrders = () => {
           </table>
         </div>
       </div>
+
+      {/* Quick Add Item Modal */}
+      {showQuickAddItem && (
+        <div className="modal-overlay" onClick={() => setShowQuickAddItem(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '500px' }}>
+            <h2>➕ Quick Add New Item</h2>
+            <form onSubmit={handleQuickAddItem}>
+              <div className="form-group">
+                <label className="form-label">Item Name *</label>
+                <input
+                  type="text"
+                  className="form-input"
+                  value={quickItemData.name}
+                  onChange={(e) => setQuickItemData({ ...quickItemData, name: e.target.value })}
+                  required
+                />
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label className="form-label">Category *</label>
+                  <input
+                    type="text"
+                    className="form-input"
+                    value={quickItemData.category}
+                    onChange={(e) => setQuickItemData({ ...quickItemData, category: e.target.value })}
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Unit *</label>
+                  <select
+                    className="form-select"
+                    value={quickItemData.unit}
+                    onChange={(e) => setQuickItemData({ ...quickItemData, unit: e.target.value })}
+                    required
+                  >
+                    <option value="pcs">Pieces</option>
+                    <option value="kg">Kilograms</option>
+                    <option value="ltr">Liters</option>
+                    <option value="box">Boxes</option>
+                    <option value="mtr">Meters</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label className="form-label">Purchase Price *</label>
+                  <input
+                    type="number"
+                    className="form-input"
+                    value={quickItemData.purchasePrice}
+                    onChange={(e) => setQuickItemData({ ...quickItemData, purchasePrice: e.target.value })}
+                    required
+                    min="0"
+                    step="0.01"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Selling Price *</label>
+                  <input
+                    type="number"
+                    className="form-input"
+                    value={quickItemData.sellingPrice}
+                    onChange={(e) => setQuickItemData({ ...quickItemData, sellingPrice: e.target.value })}
+                    required
+                    min="0"
+                    step="0.01"
+                  />
+                </div>
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label className="form-label">Initial Stock</label>
+                  <input
+                    type="number"
+                    className="form-input"
+                    value={quickItemData.currentStock}
+                    onChange={(e) => setQuickItemData({ ...quickItemData, currentStock: e.target.value })}
+                    min="0"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Min Stock Level</label>
+                  <input
+                    type="number"
+                    className="form-input"
+                    value={quickItemData.minStockLevel}
+                    onChange={(e) => setQuickItemData({ ...quickItemData, minStockLevel: e.target.value })}
+                    min="0"
+                  />
+                </div>
+              </div>
+
+              <div className="flex gap-10 mt-20">
+                <button type="submit" className="btn btn-primary">
+                  Add Item
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => setShowQuickAddItem(false)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

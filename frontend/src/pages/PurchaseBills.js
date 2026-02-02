@@ -407,7 +407,7 @@ const PurchaseBills = () => {
               </div>
 
               <div style={{ marginTop: '20px', fontSize: '18px', fontWeight: 'bold' }}>
-                Total Amount: ${calculateTotal().toFixed(2)}
+                Total Amount: ₹{calculateTotal().toFixed(2)}
               </div>
 
               <div className="flex gap-10 mt-20">
@@ -448,7 +448,7 @@ const PurchaseBills = () => {
                 <tr key={bill._id}>
                   <td>{bill.billNumber}</td>
                   <td>{bill.vendor?.name}</td>
-                  <td>${(bill.grandTotal || 0).toFixed(2)}</td>
+                  <td>₹{(bill.grandTotal || 0).toFixed(2)}</td>
                   <td>
                     {bill.status === 'Completed' && (
                       <>
@@ -457,7 +457,7 @@ const PurchaseBills = () => {
                         </span>
                         {bill.paymentStatus !== 'Paid' && bill.paymentStatus !== 'Unpaid' && (
                           <div style={{ fontSize: '11px', marginTop: '4px' }}>
-                            ${(bill.paidAmount || 0).toFixed(2)} / ${(bill.grandTotal || 0).toFixed(2)}
+                            ₹{(bill.paidAmount || 0).toFixed(2)} / ₹{(bill.grandTotal || 0).toFixed(2)}
                           </div>
                         )}
                       </>
@@ -528,9 +528,9 @@ const PurchaseBills = () => {
               <div style={{ marginBottom: '20px', padding: '10px', backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
                 <div><strong>Bill:</strong> {selectedBill.billNumber}</div>
                 <div><strong>Vendor:</strong> {selectedBill.vendor?.name}</div>
-                <div><strong>Total Amount:</strong> ${(selectedBill.grandTotal || 0).toFixed(2)}</div>
-                <div><strong>Paid Amount:</strong> ${(selectedBill.paidAmount || 0).toFixed(2)}</div>
-                <div><strong>Remaining:</strong> ${((selectedBill.grandTotal || 0) - (selectedBill.paidAmount || 0)).toFixed(2)}</div>
+                <div><strong>Total Amount:</strong> ₹{(selectedBill.grandTotal || 0).toFixed(2)}</div>
+                <div><strong>Paid Amount:</strong> ₹{(selectedBill.paidAmount || 0).toFixed(2)}</div>
+                <div><strong>Remaining:</strong> ₹{((selectedBill.grandTotal || 0) - (selectedBill.paidAmount || 0)).toFixed(2)}</div>
               </div>
               
               <form onSubmit={handlePaymentSubmit}>
@@ -619,9 +619,9 @@ const PurchaseBills = () => {
               <div style={{ marginBottom: '20px', padding: '10px', backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
                 <div><strong>Bill:</strong> {selectedBill.billNumber}</div>
                 <div><strong>Vendor:</strong> {selectedBill.vendor?.name}</div>
-                <div><strong>Total Amount:</strong> ${(paymentHistory.grandTotal || 0).toFixed(2)}</div>
-                <div><strong>Paid Amount:</strong> ${(paymentHistory.paidAmount || 0).toFixed(2)}</div>
-                <div><strong>Remaining:</strong> ${(paymentHistory.remainingAmount || 0).toFixed(2)}</div>
+                <div><strong>Total Amount:</strong> ₹{(paymentHistory.grandTotal || 0).toFixed(2)}</div>
+                <div><strong>Paid Amount:</strong> ₹{(paymentHistory.paidAmount || 0).toFixed(2)}</div>
+                <div><strong>Remaining:</strong> ₹{(paymentHistory.remainingAmount || 0).toFixed(2)}</div>
                 <div>
                   <strong>Status:</strong>{' '}
                   <span className={`badge ${getPaymentStatusBadge(paymentHistory.paymentStatus)}`}>
@@ -668,7 +668,7 @@ const PurchaseBills = () => {
                     {paymentHistory.payments.map((payment, index) => (
                       <tr key={index}>
                         <td>{new Date(payment.paymentDate).toLocaleDateString()}</td>
-                        <td>${(payment.amount || 0).toFixed(2)}</td>
+                        <td>₹{(payment.amount || 0).toFixed(2)}</td>
                         <td>{payment.paymentMethod}</td>
                         <td>{payment.reference || '-'}</td>
                         <td>{payment.recordedBy?.name || 'N/A'}</td>

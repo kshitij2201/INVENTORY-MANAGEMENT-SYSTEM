@@ -2,7 +2,9 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { NotificationProvider } from './context/NotificationContext';
+import { SidebarProvider } from './context/SidebarContext';
 import PrivateRoute from './components/PrivateRoute';
+import MobileMenuButton from './components/MobileMenuButton';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Items from './pages/Items';
@@ -31,8 +33,10 @@ function App() {
   return (
     <AuthProvider>
       <NotificationProvider>
-        <BrowserRouter>
-          <Routes>
+        <SidebarProvider>
+          <BrowserRouter>
+            <MobileMenuButton />
+            <Routes>
             <Route path="/login" element={<Login />} />
           
           <Route
@@ -137,6 +141,7 @@ function App() {
           <Route path="/" element={<Navigate to="/dashboard" />} />
         </Routes>
       </BrowserRouter>
+        </SidebarProvider>
       </NotificationProvider>
     </AuthProvider>
   );
